@@ -61,8 +61,13 @@ class NumberToFrWords
 		$reversedSplit = str_split(strrev($number), 3);
 
 		$words = array();
-		foreach (array_reverse($reversedSplit) as $piece) {
+		foreach (array_reverse($reversedSplit) as $k => $piece) {
 			$piece = strrev($piece);
+
+			if ($k == 0 && $piece == 1 && count($reversedSplit) == 2) { // Exception for 1*** (we don't say "un mille")
+				$words[] = '';
+				continue;
+			}
 
 			$words[] = self::upTo3Digits($piece);
 		}
@@ -84,7 +89,7 @@ class NumberToFrWords
 			$output .= $word;
 		}
 
-		return $output;
+		return trim($output);
 	}
 
 	private static function upTo3Digits($number)
