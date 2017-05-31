@@ -78,7 +78,7 @@ class NumberToFrWords
 		foreach ($words as $k => $word) {
 			if ($k > 0) {
 				$largeNumber = self::LARGE_NUMBERS[$maxLargeNumber];
-				if ($word[$k - 1] != 'un' && $largeNumber != 'mille') {
+				if ($words[$k - 1] != 'un' && $largeNumber != 'mille') {
 					$largeNumber .= 's';
 				}
 
