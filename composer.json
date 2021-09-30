@@ -1,0 +1,15 @@
+{
+    "name": "sicaa/number-to-fr-words",
+    "description": "Simple and effective lib to convert number into french words",
+    "license": "unlicensed",
+    "authors": [
+        {
+            "name": "Sicaa",
+            "email": "jessica@pandoor.dev",
+            "homepage": "https://github.com/sicaa"
+        }
+    ],
+    "require": {
+        "php": ">=7.4 || ^8.0"
+    }
+}
