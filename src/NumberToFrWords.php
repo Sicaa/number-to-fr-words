@@ -94,18 +94,19 @@ final class NumberToFrWords
 
         $output1 = $output2 = '';
 
+        $decade = (int) substr($stringNumber, -2, 1);
+        $unit = (int) substr($stringNumber, -1);
+
         if (strlen($stringNumber) > 2) {
             $hundred = (int) substr($stringNumber, -3, 1);
 
             if ($hundred == 1) { // 1**
                 $output2 = self::TEN_TO_TEN[$hundred * 100].' ';
             } else if ($hundred > 1) {
-                $output2 = self::UNITS[$hundred].' cents ';
+                $output2 = self::UNITS[$hundred].' cent';
+                $output2 .= $decade.$unit <= 0 ? 's' : ' '; // No "s" if "cent" is the final word
             }
         }
-
-        $decade = (int) substr($stringNumber, -2, 1);
-        $unit = (int) substr($stringNumber, -1);
 
         if ($decade.$unit <= 0) {
             return $output2.$output1;
