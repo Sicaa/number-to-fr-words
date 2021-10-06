@@ -28,7 +28,7 @@ var_dump(NumberToFrWords::output(1337));
 
 ### Limitations
 
-Le nombre maximal supporté dépend de la plateforme sur laquelle est utilisée l'outil. Au délà de la valeur de PHP_INT_MAX, PHP interprète l'entier en tant que nombre décimal (voir http://php.net/manual/fr/language.types.integer.php). La classe ne prenant pas en charge les nombres non entiers, sur un support 64-bit, le nombre maximal pris en charge est 9223372036854775807.
+Le nombre maximal supporté dépend de la plateforme sur laquelle est utilisée l'outil. Au délà de la valeur de `PHP_INT_MAX`, PHP interprète l'entier en tant que nombre décimal (voir http://php.net/manual/fr/language.types.integer.php). La classe ne prenant pas en charge les nombres non entiers, sur un support 64-bit, le nombre maximal pris en charge est `9223372036854775807`.
 
 ```php
 <?php
