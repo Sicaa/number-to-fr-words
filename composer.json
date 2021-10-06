@@ -20,5 +20,10 @@
         "psr-4": {
             "Sicaa\\NumberToFrWords\\": "src/"
         }
+    },
+    "scripts": {
+        "test": [
+            "./vendor/bin/phpunit tests"
+        ]
     }
 }
