@@ -1,6 +1,8 @@
 <?php
 
-class NumberToFrWords
+namespace Sicaa\NumberToFrWords;
+
+final class NumberToFrWords
 {
     const UNITS = array(
         1 => 'un',
