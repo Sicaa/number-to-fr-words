@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sicaa\NumberToFrWords;
 
@@ -50,17 +50,9 @@ final class NumberToFrWords
         'quintillion',
     );
 
-    public static function output($number)
+    public static function output(int $number): string
     {
-        if (!is_numeric($number)) {
-            throw new \Exception(__CLASS__.'::'.__FUNCTION__.': $number must be numeric');
-        }
-
-        if (is_float($number)) {
-            throw new \Exception(__CLASS__.'::'.__FUNCTION__.': $number must be an integer');
-        }
-
-        $reversedSplit = str_split(strrev($number), 3);
+        $reversedSplit = str_split(strrev((string) $number), 3);
 
         $words = array();
         foreach (array_reverse($reversedSplit) as $k => $piece) {
@@ -94,18 +86,16 @@ final class NumberToFrWords
         return trim($output);
     }
 
-    private static function upTo3Digits($number)
+    private static function upTo3Digits(string $stringNumber): string
     {
-        $number = trim($number);
-
-        if (strlen($number) == 1) {
-            return self::UNITS[$number];
+        if (strlen($stringNumber) == 1) {
+            return self::UNITS[$stringNumber];
         }
 
         $output1 = $output2 = '';
 
-        if (strlen($number) > 2) {
-            $hundred = (int) substr($number, -3, 1);
+        if (strlen($stringNumber) > 2) {
+            $hundred = (int) substr($stringNumber, -3, 1);
 
             if ($hundred == 1) { // 1**
                 $output2 = self::TEN_TO_TEN[$hundred * 100].' ';
@@ -114,8 +104,8 @@ final class NumberToFrWords
             }
         }
 
-        $decade = (int) substr($number, -2, 1);
-        $unit = (int) substr($number, -1);
+        $decade = (int) substr($stringNumber, -2, 1);
+        $unit = (int) substr($stringNumber, -1);
 
         if ($decade.$unit > 0) {
             if ($unit == 0) { // All *0
