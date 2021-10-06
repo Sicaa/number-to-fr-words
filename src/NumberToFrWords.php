@@ -4,7 +4,7 @@ namespace Sicaa\NumberToFrWords;
 
 final class NumberToFrWords
 {
-    const UNITS = array(
+    const UNITS = [
         1 => 'un',
         2 => 'deux',
         3 => 'trois',
@@ -14,9 +14,9 @@ final class NumberToFrWords
         7 => 'sept',
         8 => 'huit',
         9 => 'neuf',
-    );
+    ];
 
-    const TEN_TO_TEN = array(
+    const TEN_TO_TEN = [
         10 => 'dix',
         20 => 'vingt',
         30 => 'trente',
@@ -27,9 +27,9 @@ final class NumberToFrWords
         80 => 'quatre-vingt',
         90 => 'quatre-vingt-dix',
         100 => 'cent',
-    );
+    ];
 
-    const DECADES = array(
+    const DECADES = [
         11 => 'onze',
         12 => 'douze',
         13 => 'treize',
@@ -39,22 +39,22 @@ final class NumberToFrWords
         17 => 'dix-sept',
         18 => 'dix-huit',
         19 => 'dix-neuf',
-    );
+    ];
 
-    const LARGE_NUMBERS = array(
+    const LARGE_NUMBERS = [
         1 => 'mille',
         'million',
         'milliard',
         'trillion',
         'quadrillion',
         'quintillion',
-    );
+    ];
 
     public static function output(int $number): string
     {
         $reversedSplit = str_split(strrev((string) $number), 3);
 
-        $words = array();
+        $words = [];
         foreach (array_reverse($reversedSplit) as $k => $piece) {
             $piece = strrev($piece);
 
@@ -107,26 +107,28 @@ final class NumberToFrWords
         $decade = (int) substr($stringNumber, -2, 1);
         $unit = (int) substr($stringNumber, -1);
 
-        if ($decade.$unit > 0) {
-            if ($unit == 0) { // All *0
-                $output1 = self::TEN_TO_TEN[$decade.$unit];
-            } else if ($decade == 1) { // 11 to 19
-                $output1 = self::DECADES[$decade.$unit];
-            } else if (in_array($decade, array(7, 9))) { // 7* and 9*
-                $and = '-';
-                if ($decade == 7 && $unit == 1) // 71
-                    $and = '-et-';
-                $output1 = self::TEN_TO_TEN[$decade * 10 - 10].$and.self::DECADES[$unit + 10];
-            } else if ($decade == 0) { // *0*
-                $output1 = self::UNITS[$unit];
-            } else if ($unit == 1) { // **1
+        if ($decade.$unit <= 0) {
+            return $output2.$output1;
+        }
+
+        if ($unit == 0) { // All *0
+            $output1 = self::TEN_TO_TEN[$decade.$unit];
+        } else if ($decade == 1) { // 11 to 19
+            $output1 = self::DECADES[$decade.$unit];
+        } else if (in_array($decade, [7, 9])) { // 7* and 9*
+            $and = '-';
+            if ($decade == 7 && $unit == 1) // 71
                 $and = '-et-';
-                if ($decade == 8) // 81
-                    $and = '-';
-                $output1 = self::TEN_TO_TEN[$decade * 10].$and.self::UNITS[$unit];
-            } else { // All others
-                $output1 = self::TEN_TO_TEN[$decade * 10].'-'.self::UNITS[$unit];
-            }
+            $output1 = self::TEN_TO_TEN[$decade * 10 - 10].$and.self::DECADES[$unit + 10];
+        } else if ($decade == 0) { // *0*
+            $output1 = self::UNITS[$unit];
+        } else if ($unit == 1) { // **1
+            $and = '-et-';
+            if ($decade == 8) // 81
+                $and = '-';
+            $output1 = self::TEN_TO_TEN[$decade * 10].$and.self::UNITS[$unit];
+        } else { // All others
+            $output1 = self::TEN_TO_TEN[$decade * 10].'-'.self::UNITS[$unit];
         }
 
         return $output2.$output1;
