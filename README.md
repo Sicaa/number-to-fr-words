@@ -1,6 +1,7 @@
 # Number To FR Words
 
 ![Build Status](https://img.shields.io/circleci/build/github/Sicaa/number-to-fr-words)
+![Last release](https://img.shields.io/github/v/release/Sicaa/number-to-fr-words)
 
 ## English
 
