@@ -2,7 +2,7 @@
     "name": "sicaa/number-to-fr-words",
     "description": "Simple and effective lib to convert number into french words",
     "type": "library",
-    "license": "unlicensed",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sicaa",
