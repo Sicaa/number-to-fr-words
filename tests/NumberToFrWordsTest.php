@@ -32,7 +32,13 @@ final class NumberToFrWordsTest extends TestCase
             [1900, 'mille neuf cents'],
             [2000, 'deux mille'],
             [10492, 'dix mille quatre cent quatre-vingt-douze'],
+            [1000000, 'un million'],
             [197465151, 'cent quatre-vingt-dix-sept millions quatre cent soixante-cinq mille cent cinquante-et-un'],
+            [1000000000, 'un milliard'],
+            [1000002000000, 'un trillion deux millions'],
+            [1000000000002000, 'un quadrillion deux mille'],
+            [1000000000000000000, 'un quintillion'],
+            [9223372036854775807, 'neuf quintillions deux cent vingt-trois quadrillions trois cent soixante-douze trillions trente-six milliards huit cent cinquante-quatre millions sept cent soixante-quinze mille huit cent sept']
         ];
     }
 
