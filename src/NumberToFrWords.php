@@ -67,20 +67,20 @@ final class NumberToFrWords
         }
 
         $maxLargeNumber = count($words) - 1;
-
         $output = '';
         foreach ($words as $k => $word) {
-            if ($k > 0) {
-                $largeNumber = self::LARGE_NUMBERS[$maxLargeNumber];
-                if ($words[$k - 1] != 'un' && $largeNumber != 'mille') {
-                    $largeNumber .= 's';
-                }
+            $largeNumber = ($maxLargeNumber > 0 ? self::LARGE_NUMBERS[$maxLargeNumber]:'');
 
-                $output .= ' '.$largeNumber.' ';
-                $maxLargeNumber--;
+            if ($word != 'un' && $largeNumber != 'mille' && $largeNumber !=='') {
+                $largeNumber .= 's';
             }
-
+            if ($word === '' && $k > 0){ // Dealing with 1000000, 1000000000...
+                $maxLargeNumber--;
+                continue;
+            }
             $output .= $word;
+            $output .= ' '.$largeNumber.' ';
+            $maxLargeNumber--;
         }
 
         return trim($output);
