@@ -5,6 +5,7 @@ namespace Sicaa\NumberToFrWords;
 final class NumberToFrWords
 {
     const UNITS = [
+        0 => 'zéro',
         1 => 'un',
         2 => 'deux',
         3 => 'trois',

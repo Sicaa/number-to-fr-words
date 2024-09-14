@@ -10,6 +10,7 @@ final class NumberToFrWordsTest extends TestCase
     public function numberProvider()
     {
         return [
+            [0, 'zéro'],
             [1, 'un'],
             [2, 'deux'],
             [3, 'trois'],
